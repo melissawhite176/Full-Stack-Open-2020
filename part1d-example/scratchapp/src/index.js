@@ -112,7 +112,7 @@ import ReactDOM from 'react-dom';
 
 
 
-//Part 5- Passing Event Handlers to Child Components
+//Part 5- passing event handlers to child components 
 
 const Button = (props) => (
     <button onClick={props.handleClick}>{props.text}</button>
@@ -121,16 +121,16 @@ const Button = (props) => (
 const App = () => {
     const [value, setValue] = useState(10)
 
-    const setToValue = (newValue) => () => {
+    const setToValue = (newValue) => {
         setValue(newValue)
     }
 
     return (
         <div>
             {value}
-            <Button onClick={() => setToValue(1000)} text="thousand"/>
-            <Button onClick={() => setToValue(0)} text="reset"/>
-            <Button onClick={() => setToValue(value + 1)} text="increment"/>
+            <Button handleClick={() => setToValue(1000)} text="thousand"/>
+            <Button handleClick={() => setToValue(0)} text="reset"/>
+            <Button handleClick={() => setToValue(value + 1)} text="increment"/>
         </div>
     )
 }
