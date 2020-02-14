@@ -112,13 +112,15 @@ import ReactDOM from 'react-dom';
 
 
 
-//Part 5- passing event handlers to child components 
+//Part 6- Do Not Define Components Within Components
+
+const Display = props => <div>{props.value}</div> //this is the correct way (wrong way is to define in the App component)
 
 const Button = (props) => (
     <button onClick={props.handleClick}>{props.text}</button>
 )
 
-const App = () => {
+const App = props => {
     const [value, setValue] = useState(10)
 
     const setToValue = (newValue) => {
@@ -127,10 +129,10 @@ const App = () => {
 
     return (
         <div>
-            {value}
-            <Button handleClick={() => setToValue(1000)} text="thousand"/>
-            <Button handleClick={() => setToValue(0)} text="reset"/>
-            <Button handleClick={() => setToValue(value + 1)} text="increment"/>
+            <Display value ={value} />
+            <Button handleClick={() => setToValue(1000)} text="thousand" />
+            <Button handleClick={() => setToValue(0)} text="reset" />
+            <Button handleClick={() => setToValue(value + 1)} text="increment" />
         </div>
     )
 }
