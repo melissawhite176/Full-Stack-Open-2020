@@ -29,7 +29,7 @@ const App = () => {
     const [bad, setBad] = useState(0)
 
     //set new value
-    const SetToGoodValue = (newValue) => {
+    const setToGoodValue = (newValue) => {
         setGood(newValue)
     }
     const setToNeutralValue = (newValue) => {
@@ -44,7 +44,7 @@ const App = () => {
     return (
         <div>
             <Header header="give feedback" />
-            <Button handleClick={() => SetToGoodValue(good + 1)} text="good" />
+            <Button handleClick={() => setToGoodValue(good + 1)} text="good" />
             <Button handleClick={() => setToNeutralValue(neutral + 1)} text="neutral" />
             <Button handleClick={() => setToBadValue(bad + 1)} text="bad" />
             <Header header="statistics" />
