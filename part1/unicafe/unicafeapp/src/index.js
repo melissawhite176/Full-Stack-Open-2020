@@ -29,28 +29,22 @@ const App = () => {
     const [bad, setBad] = useState(0)
 
     //set new value
-    const setToGoodValue = (newValue) => {
-        setGood(newValue)
-    }
-    const setToNeutralValue = (newValue) => {
-        setNeutral(newValue)
-    }
+    const setToGoodValue = () => setGood(good + 1)
 
-    const setToBadValue = (newValue) => {
-        setBad(newValue)
-    }
-    console.log("new bad value", bad)
+    const setToNeutralValue = () => setNeutral(neutral + 1)
+
+    const setToBadValue = () => setBad(bad + 1)
 
     return (
         <div>
             <Header header="give feedback" />
-            <Button handleClick={() => setToGoodValue(good + 1)} text="good" />
-            <Button handleClick={() => setToNeutralValue(neutral + 1)} text="neutral" />
-            <Button handleClick={() => setToBadValue(bad + 1)} text="bad" />
+            <Button handleClick={setToGoodValue} text="good" />
+            <Button handleClick={setToNeutralValue} text="neutral" />
+            <Button handleClick={setToBadValue} text="bad" />
             <Header header="statistics" />
             <DisplayGood category="good" good={good} />
             <DisplayNeutral category="neutral" neutral={neutral} />
-            <DisplayBad category="bad" bad={bad}/>
+            <DisplayBad category="bad" bad={bad} />
         </div>
     )
 }
