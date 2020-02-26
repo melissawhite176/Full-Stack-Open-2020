@@ -1,25 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-//component for display
-const DisplayGood = ({ category, good }) => (
-    <div>{category} {good}</div>
-)
-const DisplayNeutral = ({ category, neutral }) => (
-    <div>{category} {neutral}</div>
-)
-const DisplayBad = ({ category, bad }) => (
-    <div>{category} {bad}</div>
-)
-const DisplayTotal = ({ category, total }) => (
-    <div>{category} {total}</div>
-)
-// const DisplayAverage = ({category, average}) => (
-//     <div>{category} {average || 0}</div>
-// )
-// const DisplayPositivePercent = ({category, positive}) => (
-//     <div>{category} {positive || 0}%</div>
-// )
 
 //component for two headers
 const Header = ({ header }) => <h1>{header}</h1>
@@ -30,13 +11,29 @@ const Button = ({ handleClick, text }) => (
 )
 
 //component for statistics
-const Statistics = ({ category, statistic, text }) => {
-
+const Statistic = ({ category, statistic, symbol }) => {
     return (
         <div>
-            {category} {statistic || 0} {text}
-    </div>
+            {category} {statistic || 0} {symbol}
+        </div>
     )
+}
+
+const Statistics = ({ good, neutral, bad, total, average, positive }) => {
+    if (total > 0) {
+        return (
+            <div>
+                <Statistic category="good" statistic={good} symbol="" />
+                <Statistic category="neutral" statistic={neutral} symbol="" />
+                <Statistic category="bad" statistic={bad} symbol="" />
+                <Statistic category="all" statistic={total} symbol="" />
+                <Statistic category="average" statistic={average} symbol="" />
+                <Statistic category="positive" statistic={positive} symbol="%" />
+            </div>
+        )
+    } else {
+        return <p>No feedback given</p>
+    }
 }
 
 
@@ -46,6 +43,7 @@ const App = () => {
     const [good, setGood] = useState(0)
     const [neutral, setNeutral] = useState(0)
     const [bad, setBad] = useState(0)
+
 
     //set new value
     const setToGoodValue = () => {
@@ -63,7 +61,8 @@ const App = () => {
 
     const average = (good * 1 + neutral * 0 + bad * -1) / (good + neutral + bad)
 
-    const positive = good / (good + neutral + bad) * 100 
+    const positive = good / (good + neutral + bad) * 100
+
 
 
     return (
@@ -73,12 +72,8 @@ const App = () => {
             <Button handleClick={setToNeutralValue} text="neutral" />
             <Button handleClick={setToBadValue} text="bad" />
             <Header header="statistics" />
-            <DisplayGood category="good" good={good} />
-            <DisplayNeutral category="neutral" neutral={neutral} />
-            <DisplayBad category="bad" bad={bad} />
-            <DisplayTotal category="all" total={total} />
-            <Statistics category="average" statistic={average} text=""/>
-            <Statistics category="positive" statistic={positive} text="%" />
+            <Statistics good={good} neutral={neutral} bad={bad} total={total} average={average} positive={positive} />
+
         </div>
     )
 }
