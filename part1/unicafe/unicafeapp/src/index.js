@@ -10,6 +10,16 @@ const Button = ({ handleClick, text }) => (
     <button onClick={handleClick}>{text}</button>
 )
 
+const Buttons = ({setToGoodValue, setToNeutralValue, setToBadValue}) => {
+    return (
+        <div>
+        <Button handleClick={setToGoodValue} text="good" />
+        <Button handleClick={setToNeutralValue} text="neutral" />
+        <Button handleClick={setToBadValue} text="bad" />
+        </div>
+    )
+}
+
 //component for statistics
 const Statistic = ({ category, statistic, symbol }) => {
     return (
@@ -68,9 +78,7 @@ const App = () => {
     return (
         <div>
             <Header header="give feedback" />
-            <Button handleClick={setToGoodValue} text="good" />
-            <Button handleClick={setToNeutralValue} text="neutral" />
-            <Button handleClick={setToBadValue} text="bad" />
+            <Buttons setToGoodValue={setToGoodValue} setToNeutralValue={setToNeutralValue} setToBadValue={setToBadValue}/>
             <Header header="statistics" />
             <Statistics good={good} neutral={neutral} bad={bad} total={total} average={average} positive={positive} />
 
