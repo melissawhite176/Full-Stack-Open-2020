@@ -10,12 +10,12 @@ const Button = ({ handleClick, text }) => (
     <button onClick={handleClick}>{text}</button>
 )
 
-const Buttons = ({setToGoodValue, setToNeutralValue, setToBadValue}) => {
+const Buttons = ({ setToGoodValue, setToNeutralValue, setToBadValue }) => {
     return (
         <div>
-        <Button handleClick={setToGoodValue} text="good" />
-        <Button handleClick={setToNeutralValue} text="neutral" />
-        <Button handleClick={setToBadValue} text="bad" />
+            <Button handleClick={setToGoodValue} text="good" />
+            <Button handleClick={setToNeutralValue} text="neutral" />
+            <Button handleClick={setToBadValue} text="bad" />
         </div>
     )
 }
@@ -23,9 +23,21 @@ const Buttons = ({setToGoodValue, setToNeutralValue, setToBadValue}) => {
 //component for statistics
 const Statistic = ({ category, statistic, symbol }) => {
     return (
-        <div>
-            {category} {statistic || 0} {symbol}
-        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        {category}
+                    </td>
+                    <td>
+                        {statistic || 0}
+                    </td>
+                    <td>
+                        {symbol}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     )
 }
 
@@ -78,7 +90,7 @@ const App = () => {
     return (
         <div>
             <Header header="give feedback" />
-            <Buttons setToGoodValue={setToGoodValue} setToNeutralValue={setToNeutralValue} setToBadValue={setToBadValue}/>
+            <Buttons setToGoodValue={setToGoodValue} setToNeutralValue={setToNeutralValue} setToBadValue={setToBadValue} />
             <Header header="statistics" />
             <Statistics good={good} neutral={neutral} bad={bad} total={total} average={average} positive={positive} />
 
