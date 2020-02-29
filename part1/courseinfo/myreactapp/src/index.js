@@ -1,42 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Header = (props) => {
+const Header = ({ course }) => {
     return (
         <div>
             <h1>
-                {props.course}
+                {course}
             </h1>
         </div>
 
     )
 }
-const Content = (props) => {
+const Content = ({ parts }) => {
     return (
         <div>
-            <Part parts={props.parts[0]} />
-            <Part parts={props.parts[1]} />
-            <Part parts={props.parts[2]} />
+            <Part parts={parts[0]} />
+            <Part parts={parts[1]} />
+            <Part parts={parts[2]} />
         </div>
     )
 }
 
-const Total = (props) => {
+const Total = ({ parts }) => {
     return (
         <div>
             <p>
-                {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}
+                {parts[0].exercises + parts[1].exercises + parts[2].exercises}
             </p>
         </div>
 
     )
 }
 
-const Part = (props) => {
+const Part = ({ parts }) => {
     return (
         <p>
-            {props.parts.name}
-            {props.parts.exercises}
+            {parts.name}
+            {parts.exercises}
         </p>
     )
 }
@@ -60,7 +60,6 @@ const App = () => {
         ]
     }
 
-
     return (
         <div>
             <Header course={course.name} />
@@ -69,7 +68,6 @@ const App = () => {
         </div>
     )
 }
-
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
