@@ -22,11 +22,12 @@ const notes = [
         important: true
     }
 ]
-const App = () => {
-    
+
+const App = ({notes}) => {
+
     const rows = () =>
-    notes.map(note => <li key={note.id}>{note.content}</li>)
-    
+        notes.map(note => <li key={note.id}>{note.content}</li>)
+
     return (
         <div>
             <h1>Notes</h1>
@@ -38,6 +39,6 @@ const App = () => {
 }
 
 ReactDOM.render(
-    <App />,
+    <App notes={notes} />,
     document.getElementById('root')
 )
