@@ -23,20 +23,29 @@ const notes = [
     }
 ]
 
-const App = ({notes}) => {
+const Note = ({ note }) => {
+    return (
+        <li>{note.content}</li>
+    )
+}
 
-    const rows = () =>
-        notes.map(note => <li key={note.id}>{note.content}</li>)
+export default Note
 
+const App = ({ notes }) => {
     return (
         <div>
             <h1>Notes</h1>
             <ul>
-                {rows()}
+                {notes.map(note =>
+                    <Note key={note.id} note={note} />
+                )}
             </ul>
         </div>
     )
 }
+
+const result = notes.map(note => note.content)
+console.log(result)
 
 ReactDOM.render(
     <App notes={notes} />,
