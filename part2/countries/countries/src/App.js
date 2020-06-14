@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
+
+
 const Countries = ({ showFilteredCountries, handleClick }) => {
   return (
     showFilteredCountries.map(country =>
@@ -27,9 +29,12 @@ const CountryDetails = ({ country }) => {
   )
 }
 
+
 const App = (props) => {
   const [countries, setCountries] = useState([])
   const [search, setSearch] = useState('')
+  const [weather, setWeather] = useState([])
+
 
   const getCountries = () => {
     axios
@@ -38,8 +43,20 @@ const App = (props) => {
         console.log(response.data)
         setCountries(response.data)
       })
+    }
+    useEffect(getCountries, [])
+
+  const getWeather = () => {
+    axios
+      .get(`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHER_KEY}&query=United States of America`)
+      .then(response => {
+        console.log('promise fulfilled')
+        console.log('response data', response.data)
+        setWeather(response.data.success)
+        console.log(`Current temperature in ${response.data.location.name} is ${response.data.current.temperature}℃ and wind speed is ${response.data.current.wind_speed} and wind direction is ${response.data.current.wind_dir}`);
+      })
   }
-  useEffect(getCountries, [])
+  useEffect(getWeather, [])
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value)
