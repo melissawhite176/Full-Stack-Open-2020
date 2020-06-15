@@ -33,7 +33,7 @@
     {
       "content": "notes",
       "date": "2020-06-14T17:41:43.259Z",
-      "important": true,
+      "important": false,
       "id": 6
     },
     {
@@ -45,14 +45,8 @@
     {
       "content": "new note",
       "date": "2020-06-15T17:46:29.672Z",
-      "important": true,
+      "important": false,
       "id": 8
-    },
-    {
-      "content": "new note again",
-      "date": "2020-06-15T17:46:49.048Z",
-      "important": true,
-      "id": 9
     }
   ]
 }
