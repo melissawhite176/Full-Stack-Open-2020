@@ -42,12 +42,22 @@ const App = () => {
     }
   }
 
-
-
-
   const showNames = search.length > 0
     ? persons.filter(person => person.name.toLowerCase().includes(search.toLowerCase()))
     : persons
+
+  const deleteContact = (id, name) => {
+    const confirmed = window.confirm(`'Delete ${name}?`)
+    if (!confirmed) return
+
+    else {
+      personService
+        .remove(id)
+        .then(response => {
+          setPersons(persons.filter(person => person.id !== id))
+        })
+    }
+  }
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
@@ -62,6 +72,8 @@ const App = () => {
   }
 
 
+
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -70,7 +82,7 @@ const App = () => {
       <PersonForm addName={addName} newName={newName} newNumber={newNumber}
         handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
-      <Persons showNames={showNames} />
+      <Persons showNames={showNames} onDeleteClick={deleteContact} />
     </div>
   )
 }
