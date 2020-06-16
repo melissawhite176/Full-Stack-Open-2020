@@ -33,7 +33,7 @@
     {
       "content": "notes",
       "date": "2020-06-14T17:41:43.259Z",
-      "important": false,
+      "important": true,
       "id": 6
     },
     {
@@ -43,9 +43,9 @@
       "id": 7
     },
     {
-      "content": "new note",
-      "date": "2020-06-15T17:46:29.672Z",
-      "important": false,
+      "content": "PUT and DELETE are other methods of HTTP protocol",
+      "date": "2020-06-16T03:53:01.974Z",
+      "important": true,
       "id": 8
     }
   ]
