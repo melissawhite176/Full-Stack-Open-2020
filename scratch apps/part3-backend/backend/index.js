@@ -25,12 +25,6 @@ let notes = [
     content: "PUT and DELETE are also important methods of HTTP protocol",
     date: "2019-05-30T19:55:14.298Z",
     important: true
-  },
-  {
-    id: 5,
-    content: "Node and Express are also easy",
-    date: "2019-05-30T19:57:14.298Z",
-    important: true
   }
 ]
 
@@ -51,6 +45,13 @@ app.get('/api/notes/:id', (request, response) => {
   } else {
     response.status(404).end()
   }
+})
+
+app.delete('/api/notes/:id', (request, response) => {
+  const id = Number(request.params.id)
+  notes = notes.filter(note => note.id !== id)
+
+  response.status(204).end()
 })
 
 const port = 3001
