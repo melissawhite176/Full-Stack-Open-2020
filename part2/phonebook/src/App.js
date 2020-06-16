@@ -3,19 +3,21 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import { getAll, create, update, remove } from './services/persons'
+import Notification from './components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('a new name...')
   const [newNumber, setNewNumber] = useState('555-555-5555')
   const [search, setSearch] = useState('')
+  const [updateMessage, setUpdateMessage] = useState('')
 
   const fetchPersons = () => {
     getAll()
       .then(persons => {
         setPersons(persons)
         console.log('persons', persons);
-        
+
       })
   }
 
@@ -37,8 +39,15 @@ const App = () => {
             setPersons(persons.map(p => p.name === updatedPerson.name ? updatedPerson : p))
             setNewName('')
             setNewNumber('')
+            setUpdateMessage(
+              `${person.name}'s number was updated to ${newNumber}`
+            )
+            setTimeout(() => {
+              setUpdateMessage(null)
+            }, 5000)
           })
       }
+      
       return
     }
 
@@ -51,6 +60,12 @@ const App = () => {
         setPersons(persons.concat(person))
         setNewName('')
         setNewNumber('')
+        setUpdateMessage(
+          `${person.name}'s number was added with number ${newNumber}`
+        )
+        setTimeout(() => {
+          setUpdateMessage(null)
+        }, 5000)
       })
   }
 
@@ -62,7 +77,7 @@ const App = () => {
     const confirmed = window.confirm(`'Delete ${name}?`)
     if (!confirmed) return
 
-    else 
+    else
       remove(id)
         .then(response => {
           setPersons(persons.filter(person => person.id !== id))
@@ -84,6 +99,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={updateMessage} />
       <Filter search={search} handleSearchChange={handleSearchChange} />
       <h2>add a new</h2>
       <PersonForm addName={addName} newName={newName} newNumber={newNumber}
