@@ -25,6 +25,12 @@ let notes = [
     content: "PUT and DELETE are also important methods of HTTP protocol",
     date: "2019-05-30T19:55:14.298Z",
     important: true
+  },
+  {
+    id: 5,
+    content: "Node and Express are also easy",
+    date: "2019-05-30T19:57:14.298Z",
+    important: true
   }
 ]
 
