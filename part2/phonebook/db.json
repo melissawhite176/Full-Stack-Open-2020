@@ -31,31 +31,6 @@
       "id": 8
     },
     {
-      "name": "joe blow",
-      "number": "555-555-5555",
-      "id": 9
-    },
-    {
-      "name": "Loki",
-      "number": "555-111-2222",
-      "id": 10
-    },
-    {
-      "name": "Alpha",
-      "number": "222-333-4444",
-      "id": 11
-    },
-    {
-      "name": "Brix",
-      "number": "222-555-4444",
-      "id": 12
-    },
-    {
-      "name": "Raja",
-      "number": "222-666-4444",
-      "id": 13
-    },
-    {
       "name": "Joe Schmo",
       "number": "555-555-5555",
       "id": 14
@@ -66,9 +41,14 @@
       "id": 15
     },
     {
-      "name": "Loki Bear",
-      "number": "555-555-5555",
+      "name": "Mary Mack",
+      "number": "222-333-4444",
       "id": 16
+    },
+    {
+      "name": "Bob",
+      "number": "111-222-3333",
+      "id": 18
     }
   ]
 }

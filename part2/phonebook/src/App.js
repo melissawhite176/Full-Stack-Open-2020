@@ -4,23 +4,23 @@ import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import { getAll, create, update, remove } from './services/persons'
 import Notification from './components/Notification'
+import ErrorMessage from './components/ErrorMessage'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('a new name...')
   const [newNumber, setNewNumber] = useState('555-555-5555')
   const [search, setSearch] = useState('')
-  const [updateMessage, setUpdateMessage] = useState('')
+  const [notification, setNotification] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const fetchPersons = () => {
     getAll()
       .then(persons => {
         setPersons(persons)
         console.log('persons', persons);
-
       })
   }
-
   useEffect(fetchPersons, [])
 
   const addName = (event) => {
@@ -39,15 +39,23 @@ const App = () => {
             setPersons(persons.map(p => p.name === updatedPerson.name ? updatedPerson : p))
             setNewName('')
             setNewNumber('')
-            setUpdateMessage(
+            setNotification(
               `${person.name}'s number was updated to ${newNumber}`
             )
             setTimeout(() => {
-              setUpdateMessage(null)
+              setNotification(null)
             }, 5000)
           })
+          .catch(error => {
+            setErrorMessage(
+              `Information on ${person.name} has already been removed from server`
+            )
+            setTimeout(() => {
+              setErrorMessage(null)
+            }, 5000)
+            setPersons(persons.filter(p => p.id !== person.id))
+          })
       }
-      
       return
     }
 
@@ -60,11 +68,11 @@ const App = () => {
         setPersons(persons.concat(person))
         setNewName('')
         setNewNumber('')
-        setUpdateMessage(
+        setNotification(
           `${person.name}'s number was added with number ${newNumber}`
         )
         setTimeout(() => {
-          setUpdateMessage(null)
+          setNotification(null)
         }, 5000)
       })
   }
@@ -96,10 +104,12 @@ const App = () => {
     setSearch(event.target.value)
   }
 
+
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={updateMessage} />
+      <Notification message={notification} />
+      <ErrorMessage message={errorMessage} />
       <Filter search={search} handleSearchChange={handleSearchChange} />
       <h2>add a new</h2>
       <PersonForm addName={addName} newName={newName} newNumber={newNumber}
