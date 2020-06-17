@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 
+app.use(express.json())
 let persons = [
     {
         name: "Arto Hellas",
@@ -55,11 +56,40 @@ app.get('/api/persons/:id', (request, response) => {
 app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     persons = persons.filter(note => note.id !== id)
-  
+
     response.status(204).end()
-  })
+})
 
+const generateId = () => {
+    //1 to 1000
+    const uniqueId = Math.floor(Math.random() * 1000) + 1
+    return uniqueId
+}
 
+app.post('/api/persons', (request, response) => {
+    const { name, number } = request.body
+
+    if (!name) {
+        return response.status(400).json({
+            error: 'missing name'
+        })
+    }
+    if (!number) {
+        return response.status(400).json({
+            error: 'missing number'
+        })
+    }
+
+    const person = {
+        name: name,
+        number: number,
+        id: generateId(),
+    }
+
+    persons = persons.concat(person)
+
+    response.json(person)
+})
 const port = 3001
 app.listen(port)
 console.log(`Server running on port ${port}`)
