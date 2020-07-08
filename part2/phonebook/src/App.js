@@ -75,6 +75,12 @@ const App = () => {
           setNotification(null)
         }, 5000)
       })
+      .catch(error => {
+        setErrorMessage(`error: ${error.response.data.error}`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+      })
   }
 
   const shownNames = search.length > 0
