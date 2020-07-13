@@ -33,6 +33,17 @@ app.get('/api/blogs', (request, response) => {
   response.json(blogs)
 })
 
+app.get('/api/blogs/:id', (request, response) => {
+  const id = Number(request.params.id)
+  console.log('id:', id)
+  const blog = blogs.find(blog => {
+    console.log(blog.id, typeof blog.id, typeof id, blog.id === id)
+    return blog.id === id
+  })
+  console.log('blog:', blog)
+  response.json(blog)
+})
+
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
