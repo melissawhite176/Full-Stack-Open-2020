@@ -1,6 +1,7 @@
-const http = require('http')
+const express = require('express')
+const app = express()
 
- let blogs = [
+let blogs = [
   {
     id: 1,
     title: "Delicious Desserts Blog",
@@ -22,13 +23,17 @@ const http = require('http')
     url: "https://www.fullstackopen.com",
     likes: 10
   }
- ]
+]
 
-const app = http.createServer((request, response) => {
-  response.writeHead(200, { 'Content-Type': 'application/json' })
-  response.end(JSON.stringify(blogs))
+app.get('/', (request, response) => {
+  response.send('<h1>Hello World!</h1>')
 })
 
-const port = 3001
-app.listen(port)
-console.log(`Server running on port ${port}`)
+app.get('/api/blogs', (request, response) => {
+  response.json(blogs)
+})
+
+const PORT = 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
