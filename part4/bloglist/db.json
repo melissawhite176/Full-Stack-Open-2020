@@ -1,0 +1,22 @@
+{
+  "blogs": [
+    {
+      "title": "Delicious Desserts Blog",
+      "author": "Joanna Goodman",
+      "url": "https://www.google.com",
+      "likes": 4
+    },
+    {
+      "title": "Tasty Treats Blog",
+      "author": "Norton Oswald",
+      "url": "https://www.wikipedia.com",
+      "likes": 6
+    },
+    {
+      "title": "DIY Furniture Blog",
+      "author": "Virginia Woolf",
+      "url": "https://www.fullstackopen.com",
+      "likes": 10
+    }
+  ]
+}
