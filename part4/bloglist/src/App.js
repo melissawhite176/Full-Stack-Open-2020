@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import Blog from './components/Blog'
-import axios from 'axios'
+import blogService from './services/blogs'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
   
   useEffect(() => {
-    console.log('effect')
-    axios 
-      .get('http://localhost:3001/blogs')
-      .then(response => {
-        console.log('promise fulfilled')
-        setBlogs(response.data)
+    blogService
+      .getAll()
+      .then(initialBlogs => {
+        setBlogs(initialBlogs)
       })
   }, [])
   console.log('render', blogs.length, 'blogs')
