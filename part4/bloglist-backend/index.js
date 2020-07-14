@@ -90,3 +90,20 @@ const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+
+//middleware that prints information about every request 
+//that is sent to the server (middleware receives these three parameters)
+const requestLogger = (request, response, next) => {
+  console.log('Method:', request.method)
+  console.log('Path: ', request.path)
+  console.log('Body: ', request.body)
+  console.log('---')
+  next()
+}
+app.use(requestLogger)
+
+//middleware used for catching requests made to non-existent routes
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: 'unknown endpoint' })
+}
+app.use(unknownEndpoint)
