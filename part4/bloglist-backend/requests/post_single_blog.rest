@@ -2,8 +2,8 @@ POST http://localhost:3001/api/blogs
 Content-Type: application/json
 
 {
-  "title": "William's Watches Blog",
-  "author": "Will",
-  "url": "https://www.mozilla.org",
-  "likes": 100
+  "title": "Connie's Cameras Blog",
+  "author": "Connie",
+  "url": "https://www.etsy.com",
+  "likes": 20
 }
