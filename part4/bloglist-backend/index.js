@@ -1,5 +1,9 @@
 const express = require('express')
+const { request, response } = require('express')
 const app = express()
+
+//json parser middleware
+app.use(express.json())
 
 let blogs = [
   {
@@ -50,6 +54,13 @@ app.delete('/api/blogs/:id', (request, response) => {
   blogs = blogs.filter(blog => blog.id !== id)
 
   response.status(204).end()
+})
+
+app.post('/api/blogs', (request, response) => {
+  const blog = request.body
+  console.log('blog:', blog)
+
+  response.json(blog)
 })
 
 const PORT = 3001

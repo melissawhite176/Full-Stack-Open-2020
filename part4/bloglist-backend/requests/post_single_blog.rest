@@ -1,0 +1,9 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Polly Plants Blog",
+  "author": "Polly",
+  "url": "https://www.duckduckgo.com",
+  "likes": 5
+}
