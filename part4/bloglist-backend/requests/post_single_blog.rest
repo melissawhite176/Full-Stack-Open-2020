@@ -2,8 +2,8 @@ POST http://localhost:3001/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Polly Plants Blog",
-  "author": "Polly",
-  "url": "https://www.duckduckgo.com",
-  "likes": 5
+  "title": "William's Watches Blog",
+  "author": "Will",
+  "url": "https://www.mozilla.org",
+  "likes": 100
 }
