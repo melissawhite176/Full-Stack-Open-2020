@@ -57,8 +57,15 @@ app.delete('/api/blogs/:id', (request, response) => {
 })
 
 app.post('/api/blogs', (request, response) => {
+  const maxId = blogs.length > 0
+  ? Math.max(...blogs.map(n => n.id))
+  : 0
+
   const blog = request.body
+  blog.id = maxId + 1
   console.log('blog:', blog)
+
+  blogs = blogs.concat(blog)
 
   response.json(blog)
 })
