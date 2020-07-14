@@ -43,7 +43,7 @@ app.get('/api/blogs/:id', (request, response) => {
     return blog.id === id
   })
   if (blog) {
-  response.json(blog)
+    response.json(blog)
   } else {
     response.status(404).end()
   }
@@ -56,13 +56,29 @@ app.delete('/api/blogs/:id', (request, response) => {
   response.status(204).end()
 })
 
-app.post('/api/blogs', (request, response) => {
+const generateId = () => {
   const maxId = blogs.length > 0
-  ? Math.max(...blogs.map(n => n.id))
-  : 0
+    ? Math.max(...blogs.map(n => n.id))
+    : 0
+  return maxId + 1
+}
 
-  const blog = request.body
-  blog.id = maxId + 1
+app.post('/api/blogs', (request, response) => {
+  const body = request.body
+
+  if (!body.title || !body.author || !body.url || !body.likes) {
+    return response.status(400).json({
+      error: 'title, author, url, or number of likes missing'
+    })
+  }
+
+  const blog = {
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    id: generateId(),
+  }
+
   console.log('blog:', blog)
 
   blogs = blogs.concat(blog)
