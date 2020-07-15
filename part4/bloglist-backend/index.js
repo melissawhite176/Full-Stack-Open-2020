@@ -89,7 +89,9 @@ app.post('/api/blogs', (request, response) => {
   response.json(blog)
 })
 
-const PORT = 3001
+//environment variable PORT or port 3001 
+//if environment variable is undefined
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
