@@ -1,6 +1,9 @@
 const express = require('express')
 const { request, response } = require('express')
 const app = express()
+const cors = require('cors')
+
+app.use(cors())
 
 //json parser middleware
 app.use(express.json())
